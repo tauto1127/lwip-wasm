@@ -1,0 +1,63 @@
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_46381/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_46381.dir/build.make CMakeFiles/cmTC_46381.dir/build
+gmake[1]: Entering directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj
+/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot   -v -MD -MT CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+ (in-process)
+ "/opt/wasi-sdk/bin/clang-14" -cc1 -triple wasm32-unknown-wasi -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility hidden -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -resource-dir /opt/wasi-sdk/lib/clang/14.0.4 -dependency-file CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj.d -MT CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -sys-header-deps -isysroot /opt/wasi-sdk/share/wasi-sysroot -internal-isystem /opt/wasi-sdk/lib/clang/14.0.4/include -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include -fdebug-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -o CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.4 based upon LLVM 14.0.4 default target wasm32-wasi
+ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/wasi-sdk/lib/clang/14.0.4/include
+ /opt/wasi-sdk/share/wasi-sysroot/include
+End of search list.
+Linking C executable cmTC_46381
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_46381.dir/link.txt --verbose=1
+/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot  -v CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -o cmTC_46381 
+clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+ "/opt/wasi-sdk/bin/wasm-ld" -m wasm32 -L/opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/crt1-command.o CMakeFiles/cmTC_46381.dir/CMakeCCompilerABI.c.obj -lc /opt/wasi-sdk/lib/clang/14.0.4/lib/wasi/libclang_rt.builtins-wasm32.a -o cmTC_46381
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: malloc
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: calloc
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+clang-14: error: linker command failed with exit code 1 (use -v to see invocation)
+gmake[1]: *** [CMakeFiles/cmTC_46381.dir/build.make:100: cmTC_46381] Error 1
+gmake[1]: Leaving directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_46381/fast] Error 2
+
+
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_15fb1/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_15fb1.dir/build.make CMakeFiles/cmTC_15fb1.dir/build
+gmake[1]: ディレクトリ '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp' に入ります
+Building C object CMakeFiles/cmTC_15fb1.dir/testCCompiler.c.obj
+/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot    -MD -MT CMakeFiles/cmTC_15fb1.dir/testCCompiler.c.obj -MF CMakeFiles/cmTC_15fb1.dir/testCCompiler.c.obj.d -o CMakeFiles/cmTC_15fb1.dir/testCCompiler.c.obj -c /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_15fb1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15fb1.dir/link.txt --verbose=1
+/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot CMakeFiles/cmTC_15fb1.dir/testCCompiler.c.obj -o cmTC_15fb1 
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: malloc
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: calloc
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+wasm-ld: error: /opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi/libc.a(__main_void.o): undefined symbol: free
+clang-14: error: linker command failed with exit code 1 (use -v to see invocation)
+gmake[1]: *** [CMakeFiles/cmTC_15fb1.dir/build.make:100: cmTC_15fb1] エラー 1
+gmake[1]: ディレクトリ '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp' から出ます
+gmake: *** [Makefile:127: cmTC_15fb1/fast] エラー 2
+
+
+

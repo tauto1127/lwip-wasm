@@ -39,6 +39,8 @@ add_library(
 	${lwip_core_SRCS}
 )
 
+target_link_libraries(lwip socket_wasi_ext)
+
 target_include_directories(
 	lwip
 	PRIVATE ${LWIP_DIR}/Third_Party/STM32CubeF7/Middlewares/Third_Party/LwIP/system
@@ -69,7 +71,7 @@ install(
 )
 
 install(
-	TARGETS lwip 
+	TARGETS lwip socket_wasi_ext
 	DESTINATION     ${INSTALL_CMAKE_DIR} 
 	EXPORT lwip-export
     LIBRARY         DESTINATION lib

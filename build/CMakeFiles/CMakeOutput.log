@@ -1,0 +1,197 @@
+The target system is: WASI - 1 - wasm32
+The host system is: Linux - 6.8.0-60-generic - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/wasi-sdk/bin/clang 
+Build flags: 
+Id flags: -c;--target=wasm32-wasi 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is Clang, found in "/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/3.22.1/CompilerIdC/CMakeCCompilerId.o"
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/wasi-sdk/bin/clang 
+Build flags: 
+Id flags: -c;--target=wasm32-wasi 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is Clang, found in "/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/3.22.1/CompilerIdC/CMakeCCompilerId.o"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_73e80/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_73e80.dir/build.make CMakeFiles/cmTC_73e80.dir/build
+gmake[1]: Entering directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj
+/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot   -v -MD -MT CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+ (in-process)
+ "/opt/wasi-sdk/bin/clang-14" -cc1 -triple wasm32-unknown-wasi -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility hidden -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -resource-dir /opt/wasi-sdk/lib/clang/14.0.4 -dependency-file CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj.d -MT CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -sys-header-deps -isysroot /opt/wasi-sdk/share/wasi-sysroot -internal-isystem /opt/wasi-sdk/lib/clang/14.0.4/include -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include -fdebug-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -o CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.4 based upon LLVM 14.0.4 default target wasm32-wasi
+ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/wasi-sdk/lib/clang/14.0.4/include
+ /opt/wasi-sdk/share/wasi-sysroot/include
+End of search list.
+Linking C static library libcmTC_73e80.a
+/usr/bin/cmake -P CMakeFiles/cmTC_73e80.dir/cmake_clean_target.cmake
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73e80.dir/link.txt --verbose=1
+/opt/wasi-sdk/bin/llvm-ar qc libcmTC_73e80.a CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj
+/opt/wasi-sdk/bin/llvm-ranlib libcmTC_73e80.a
+gmake[1]: Leaving directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/opt/wasi-sdk/lib/clang/14.0.4/include]
+    add: [/opt/wasi-sdk/share/wasi-sysroot/include]
+  end of search list found
+  collapse include dir [/opt/wasi-sdk/lib/clang/14.0.4/include] ==> [/opt/wasi-sdk/lib/clang/14.0.4/include]
+  collapse include dir [/opt/wasi-sdk/share/wasi-sysroot/include] ==> [/opt/wasi-sdk/share/wasi-sysroot/include]
+  implicit include dirs: [/opt/wasi-sdk/lib/clang/14.0.4/include;/opt/wasi-sdk/share/wasi-sysroot/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_73e80/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_73e80.dir/build.make CMakeFiles/cmTC_73e80.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [/opt/wasi-sdk/bin/clang --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot   -v -MD -MT CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)]
+  ignore line: [Target: wasm32-unknown-wasi]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /opt/wasi-sdk/bin]
+  ignore line: [ (in-process)]
+  ignore line: [ "/opt/wasi-sdk/bin/clang-14" -cc1 -triple wasm32-unknown-wasi -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility hidden -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -resource-dir /opt/wasi-sdk/lib/clang/14.0.4 -dependency-file CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj.d -MT CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -sys-header-deps -isysroot /opt/wasi-sdk/share/wasi-sysroot -internal-isystem /opt/wasi-sdk/lib/clang/14.0.4/include -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include -fdebug-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -o CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj -x c /usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 14.0.4 based upon LLVM 14.0.4 default target wasm32-wasi]
+  ignore line: [ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /opt/wasi-sdk/lib/clang/14.0.4/include]
+  ignore line: [ /opt/wasi-sdk/share/wasi-sysroot/include]
+  ignore line: [End of search list.]
+  ignore line: [Linking C static library libcmTC_73e80.a]
+  ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_73e80.dir/cmake_clean_target.cmake]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73e80.dir/link.txt --verbose=1]
+  ignore line: [/opt/wasi-sdk/bin/llvm-ar qc libcmTC_73e80.a CMakeFiles/cmTC_73e80.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [/opt/wasi-sdk/bin/llvm-ranlib libcmTC_73e80.a]
+  ignore line: [gmake[1]: Leaving directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp']
+  ignore line: []
+  ignore line: []
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: []
+  implicit fwks: []
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/wasi-sdk/bin/clang++ 
+Build flags: 
+Id flags: -c;--target=wasm32-wasi 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+
+The CXX compiler identification is Clang, found in "/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.o"
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_410b8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_410b8.dir/build.make CMakeFiles/cmTC_410b8.dir/build
+gmake[1]: Entering directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj
+/opt/wasi-sdk/bin/clang++ --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot   -v -MD -MT CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)
+Target: wasm32-unknown-wasi
+Thread model: posix
+InstalledDir: /opt/wasi-sdk/bin
+ (in-process)
+ "/opt/wasi-sdk/bin/clang-14" -cc1 -triple wasm32-unknown-wasi -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility hidden -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -resource-dir /opt/wasi-sdk/lib/clang/14.0.4 -dependency-file CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj.d -MT CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -sys-header-deps -isysroot /opt/wasi-sdk/share/wasi-sysroot -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi/c++/v1 -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/c++/v1 -internal-isystem /opt/wasi-sdk/lib/clang/14.0.4/include -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include -fdeprecated-macro -fdebug-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -o CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 14.0.4 based upon LLVM 14.0.4 default target wasm32-wasi
+ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi/c++/v1"
+ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/wasi-sdk/share/wasi-sysroot/include/c++/v1
+ /opt/wasi-sdk/lib/clang/14.0.4/include
+ /opt/wasi-sdk/share/wasi-sysroot/include
+End of search list.
+Linking CXX static library libcmTC_410b8.a
+/usr/bin/cmake -P CMakeFiles/cmTC_410b8.dir/cmake_clean_target.cmake
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_410b8.dir/link.txt --verbose=1
+/opt/wasi-sdk/bin/llvm-ar qc libcmTC_410b8.a CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj
+/opt/wasi-sdk/bin/llvm-ranlib libcmTC_410b8.a
+gmake[1]: Leaving directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1]
+    add: [/opt/wasi-sdk/lib/clang/14.0.4/include]
+    add: [/opt/wasi-sdk/share/wasi-sysroot/include]
+  end of search list found
+  collapse include dir [/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1] ==> [/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1]
+  collapse include dir [/opt/wasi-sdk/lib/clang/14.0.4/include] ==> [/opt/wasi-sdk/lib/clang/14.0.4/include]
+  collapse include dir [/opt/wasi-sdk/share/wasi-sysroot/include] ==> [/opt/wasi-sdk/share/wasi-sysroot/include]
+  implicit include dirs: [/opt/wasi-sdk/share/wasi-sysroot/include/c++/v1;/opt/wasi-sdk/lib/clang/14.0.4/include;/opt/wasi-sdk/share/wasi-sysroot/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_410b8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_410b8.dir/build.make CMakeFiles/cmTC_410b8.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [/opt/wasi-sdk/bin/clang++ --target=wasm32-wasi --sysroot=/opt/wasi-sdk/share/wasi-sysroot   -v -MD -MT CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -MF CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj.d -o CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang version 14.0.4 (https://github.com/llvm/llvm-project 29f1039a7285a5c3a9c353d054140bf2556d4c4d)]
+  ignore line: [Target: wasm32-unknown-wasi]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /opt/wasi-sdk/bin]
+  ignore line: [ (in-process)]
+  ignore line: [ "/opt/wasi-sdk/bin/clang-14" -cc1 -triple wasm32-unknown-wasi -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=none -ffp-contract=on -fno-rounding-math -mconstructor-aliases -target-cpu generic -fvisibility hidden -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -resource-dir /opt/wasi-sdk/lib/clang/14.0.4 -dependency-file CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj.d -MT CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -sys-header-deps -isysroot /opt/wasi-sdk/share/wasi-sysroot -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi/c++/v1 -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/c++/v1 -internal-isystem /opt/wasi-sdk/lib/clang/14.0.4/include -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi -internal-isystem /opt/wasi-sdk/share/wasi-sysroot/include -fdeprecated-macro -fdebug-compilation-dir=/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -o CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj -x c++ /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 14.0.4 based upon LLVM 14.0.4 default target wasm32-wasi]
+  ignore line: [ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi/c++/v1"]
+  ignore line: [ignoring nonexistent directory "/opt/wasi-sdk/share/wasi-sysroot/include/wasm32-wasi"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /opt/wasi-sdk/share/wasi-sysroot/include/c++/v1]
+  ignore line: [ /opt/wasi-sdk/lib/clang/14.0.4/include]
+  ignore line: [ /opt/wasi-sdk/share/wasi-sysroot/include]
+  ignore line: [End of search list.]
+  ignore line: [Linking CXX static library libcmTC_410b8.a]
+  ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_410b8.dir/cmake_clean_target.cmake]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_410b8.dir/link.txt --verbose=1]
+  ignore line: [/opt/wasi-sdk/bin/llvm-ar qc libcmTC_410b8.a CMakeFiles/cmTC_410b8.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [/opt/wasi-sdk/bin/llvm-ranlib libcmTC_410b8.a]
+  ignore line: [gmake[1]: Leaving directory '/home/takuto1127/sora_mros2-wasm/lwip-wasm/build/CMakeFiles/CMakeTmp']
+  ignore line: []
+  ignore line: []
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: []
+  implicit fwks: []
+
+
