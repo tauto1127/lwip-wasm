@@ -1,6 +1,14 @@
 set(LWIP_POSIX_CMAKE_VERSION 3.5.1)
 cmake_minimum_required(VERSION ${LWIP_POSIX_CMAKE_VERSION})
 
+# Set WASI-specific flags before project() call
+if(CMAKE_TOOLCHAIN_FILE MATCHES "wasi-sdk")
+	set(CMAKE_C_COMPILER_WORKS 1)
+	set(CMAKE_CXX_COMPILER_WORKS 1)
+	set(CMAKE_C_FLAGS_INIT "-Wno-unused-command-line-argument")
+	set(CMAKE_CXX_FLAGS_INIT "-Wno-unused-command-line-argument")
+endif()
+
 project(lwip-wasm-project
     VERSION 1.0.0
     DESCRIPTION "lwip-posix"

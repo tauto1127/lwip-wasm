@@ -1,4 +1,5 @@
 cmake_build/
+build/
 public/
 
 Third_Party/STM32CubeF7/
