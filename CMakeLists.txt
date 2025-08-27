@@ -39,7 +39,7 @@ endif()
 message(STATUS "LWIP_DIR " ${LWIP_DIR})
 message(STATUS "LWIP_CORE_DIR " ${LWIP_CORE_DIR})
 
-include(${PROJECT_SOURCE_DIR}/../../wasm-micro-runtime/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake)
+include(${PROJECT_SOURCE_DIR}/../../funera1-wamr/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake)
 
 add_library(
 	lwip STATIC
