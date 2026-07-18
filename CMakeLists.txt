@@ -51,6 +51,14 @@ endif()
 
 include(${WAMR_SOCKET_CMAKE})
 
+# WAMR may be checked out inside this project. Keep its socket header visible
+# while building, but do not export the source-tree path from lwip's install
+# package configuration.
+set(WAMR_SOCKET_INCLUDE_DIR
+    "${WAMR_ROOT}/core/iwasm/libraries/lib-socket/inc")
+set_property(TARGET socket_wasi_ext PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    "$<BUILD_INTERFACE:${WAMR_SOCKET_INCLUDE_DIR}>")
+
 add_library(
 	lwip STATIC
 	${lwip_SRCS}
@@ -69,6 +77,7 @@ target_include_directories(
 	PRIVATE ${LWIP_CORE_DIR}/src/include
 	PRIVATE ${LWIP_CORE_DIR}/system
 	PRIVATE ${cmsis_DIR}/include
+	PRIVATE ${WAMR_SOCKET_INCLUDE_DIR}
 	PRIVATE ${PROJECT_SOURCE_DIR}/../../library/include
 )
 
