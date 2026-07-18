@@ -39,7 +39,11 @@ endif()
 message(STATUS "LWIP_DIR " ${LWIP_DIR})
 message(STATUS "LWIP_CORE_DIR " ${LWIP_CORE_DIR})
 
-set(WAMR_SOCKET_CMAKE "/home/osslab/wasm-micro-runtime/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake")
+if(NOT DEFINED WAMR_ROOT)
+  set(WAMR_ROOT "${PROJECT_SOURCE_DIR}/../third_party/wamr")
+endif()
+set(WAMR_SOCKET_CMAKE
+    "${WAMR_ROOT}/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake")
 message(STATUS "WAMR_SOCKET_CMAKE " ${WAMR_SOCKET_CMAKE})
 if(NOT EXISTS "${WAMR_SOCKET_CMAKE}")
   message(FATAL_ERROR "Failed to locate lib_socket_wasi.cmake. Please set WAMR_ROOT to the WAMR checkout that includes lib-socket.")
