@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-SYSARCH_BRANCH="master"
+SYSARCH_BRANCH="v1.17.3"
 SYSARCH_BASEDIR="Middlewares/Third_Party/LwIP/system"
 SYSARCH_BASEREPO=https://raw.githubusercontent.com/STMicroelectronics/STM32CubeF7/${SYSARCH_BRANCH}/${SYSARCH_BASEDIR}
 SYSARCH_HEADER_REPO=${SYSARCH_BASEREPO}/arch

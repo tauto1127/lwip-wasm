@@ -39,13 +39,25 @@ endif()
 message(STATUS "LWIP_DIR " ${LWIP_DIR})
 message(STATUS "LWIP_CORE_DIR " ${LWIP_CORE_DIR})
 
-set(WAMR_SOCKET_CMAKE "/home/takuto1127/wamr-2.1.0-with-wasi-threads/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake")
+if(NOT DEFINED WAMR_ROOT)
+  set(WAMR_ROOT "${PROJECT_SOURCE_DIR}/../third_party/wamr")
+endif()
+set(WAMR_SOCKET_CMAKE
+    "${WAMR_ROOT}/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake")
 message(STATUS "WAMR_SOCKET_CMAKE " ${WAMR_SOCKET_CMAKE})
 if(NOT EXISTS "${WAMR_SOCKET_CMAKE}")
   message(FATAL_ERROR "Failed to locate lib_socket_wasi.cmake. Please set WAMR_ROOT to the WAMR checkout that includes lib-socket.")
 endif()
 
 include(${WAMR_SOCKET_CMAKE})
+
+# WAMR may be checked out inside this project. Keep its socket header visible
+# while building, but do not export the source-tree path from lwip's install
+# package configuration.
+set(WAMR_SOCKET_INCLUDE_DIR
+    "${WAMR_ROOT}/core/iwasm/libraries/lib-socket/inc")
+set_property(TARGET socket_wasi_ext PROPERTY INTERFACE_INCLUDE_DIRECTORIES
+    "$<BUILD_INTERFACE:${WAMR_SOCKET_INCLUDE_DIR}>")
 
 add_library(
 	lwip STATIC
@@ -65,6 +77,7 @@ target_include_directories(
 	PRIVATE ${LWIP_CORE_DIR}/src/include
 	PRIVATE ${LWIP_CORE_DIR}/system
 	PRIVATE ${cmsis_DIR}/include
+	PRIVATE ${WAMR_SOCKET_INCLUDE_DIR}
 	PRIVATE ${PROJECT_SOURCE_DIR}/../../library/include
 )
 

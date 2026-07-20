@@ -5,6 +5,7 @@
 #include "sys_utils.h"
 #include "udp_multicast_manager.h"
 
+#include <stdlib.h>
 #include <string.h>
 // #include <errno.h>
 
@@ -14,7 +15,15 @@ static void thread_udp_recv(void* argument);
  * config
  */
 #define MAX_SEND_PACKET_SIZE    4096
-#define MAX_RECV_PACKET_SIZE    4096
+/*
+ * Fast DDS may put a complete serialized sample in one UDP datagram.  A
+ * Cartographer SubmapQuery reply grows beyond 4096 bytes as the active submap
+ * fills, so the old limit made recvfrom() silently truncate the datagram and
+ * the RTPS parser never saw that reply.  65535 covers the largest IPv4 UDP
+ * datagram representable by lwIP's u16_t pbuf length (the practical UDP
+ * payload maximum is 65507 bytes).
+ */
+#define MAX_RECV_PACKET_SIZE    65535
 //#define DEBUG_SEND_PACKET
 //#define DEBUG_RECV_PACKET
 
@@ -335,11 +344,23 @@ static void thread_udp_recv(void* argument)
 {
   struct udp_pcb* pcb = (struct udp_pcb*)argument;
   UdpMcInfoType* mcp = udp_mc_info_get(pcb);
+  /*
+   * Each UDP PCB has its own receive thread.  This buffer used to be a
+   * function-local static, so discovery, topic and service sockets wrote into
+   * the same storage concurrently.  Allocate one buffer per receive thread;
+   * keeping 64 KiB off the relatively small WASI thread stack is intentional.
+   */
+  char* recv_msg = (char*)malloc(MAX_RECV_PACKET_SIZE);
+
+  if (recv_msg == NULL) {
+    CMSIS_IMPL_ERROR("thread_udp_recv: can not allocate receive buffer size=%d",
+                     MAX_RECV_PACKET_SIZE);
+    return;
+  }
 
   CMSIS_IMPL_INFO("thread_udp_recv:UP: mcp=%p", mcp);
 
   while (true) {
-    static char recv_msg[MAX_RECV_PACKET_SIZE + 1];
     int recv_msglen = 0;
     struct sockaddr_in remote_addr;
     if (mcp->sd < 0) {
