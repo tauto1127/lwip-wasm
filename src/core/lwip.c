@@ -28,6 +28,11 @@ u32_t lwip_htonl(u32_t val)
   return sys_htonl(val);
 }
 
+u16_t lwip_htons(u16_t val)
+{
+  return sys_htons(val);
+}
+
 void sys_lock_tcpip_core(void)
 {
   pthread_mutex_lock(&tcpip_core_mutex);

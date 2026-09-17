@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-// #include <errno.h>
 
 struct udp_pcb* udp_pcbs;
 static void thread_udp_recv(void* argument);
@@ -373,8 +372,11 @@ static void thread_udp_recv(void* argument)
     socklen_t socklen = sizeof(remote_addr);
     recv_msglen = recvfrom(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
     if (recv_msglen < 0) {
-      // CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d %s", __LINE__, mcp->sd, strerror(errno));
-      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d %d", __LINE__, mcp->sd, recv_msglen);
+      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d; recreating socket",
+                       __LINE__, mcp->sd, recv_msglen);
+      if (udp_mc_recover(mcp) != 0) {
+        CMSIS_IMPL_ERROR("thread_udp_recv: socket recreation failed");
+      }
       osDelay(1000);
       continue;
     }
