@@ -5,6 +5,8 @@
 #include "sys_utils.h"
 #include "udp_multicast_manager.h"
 
+#include <arpa/inet.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -372,14 +374,27 @@ static void thread_udp_recv(void* argument)
     socklen_t socklen = sizeof(remote_addr);
     recv_msglen = recvfrom(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
     if (recv_msglen < 0) {
-      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d; recreating socket",
-                       __LINE__, mcp->sd, recv_msglen);
-      if (udp_mc_recover(mcp) != 0) {
-        CMSIS_IMPL_ERROR("thread_udp_recv: socket recreation failed");
+      int recv_errno = errno;
+      int failed_sd = mcp->sd;
+      CMSIS_IMPL_ERROR("[DEBUG-CR-RX-20260924] udp.recvfrom failed: mcp=%p sd=%d local_port=%u rc=%d errno=%d",
+                       (void*)mcp, failed_sd, (unsigned)mcp->port,
+                       recv_msglen, recv_errno);
+      int recovery_result = udp_mc_recover(mcp);
+      if (recovery_result != 0) {
+        CMSIS_IMPL_ERROR("[DEBUG-CR-RX-20260924] udp_mc_recover failed: old_sd=%d new_sd=%d local_port=%u rc=%d",
+                         failed_sd, mcp->sd, (unsigned)mcp->port,
+                         recovery_result);
+      } else {
+        CMSIS_IMPL_INFO("[DEBUG-CR-RX-20260924] udp_mc_recover succeeded: old_sd=%d new_sd=%d local_port=%u",
+                        failed_sd, mcp->sd, (unsigned)mcp->port);
       }
       osDelay(1000);
       continue;
     }
+    CMSIS_IMPL_INFO("[DEBUG-CR-RX-20260924] udp.recvfrom succeeded: mcp=%p sd=%d local_port=%u len=%d peer=%08x:%u",
+                    (void*)mcp, mcp->sd, (unsigned)mcp->port, recv_msglen,
+                    (unsigned)ntohl(remote_addr.sin_addr.s_addr),
+                    (unsigned)ntohs(remote_addr.sin_port));
     struct pbuf* p = pbuf_alloc(PBUF_RAW, recv_msglen, PBUF_RAM);
     if (p == NULL) {
       CMSIS_IMPL_ERROR("thread_udp_recv: line:%d can not alloc memory size=%d", __LINE__, recv_msglen);
