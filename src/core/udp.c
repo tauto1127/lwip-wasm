@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 struct udp_pcb* udp_pcbs;
 static void thread_udp_recv(void* argument);
@@ -372,6 +373,13 @@ static void thread_udp_recv(void* argument)
     socklen_t socklen = sizeof(remote_addr);
     recv_msglen = recvfrom(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
     if (recv_msglen < 0) {
+      int saved_errno = errno;
+      if (saved_errno == EINTR) {
+        CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=skip reason=EINTR fd=%d",
+                         mcp->sd);
+        /* An interrupted receive does not mean the socket is broken. */
+        continue;
+      }
       CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d; recreating socket",
                        __LINE__, mcp->sd, recv_msglen);
       if (udp_mc_recover(mcp) != 0) {
