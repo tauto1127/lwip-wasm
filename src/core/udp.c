@@ -380,11 +380,8 @@ static void thread_udp_recv(void* argument)
         /* An interrupted receive does not mean the socket is broken. */
         continue;
       }
-      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d; recreating socket",
+      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d",
                        __LINE__, mcp->sd, recv_msglen);
-      if (udp_mc_recover(mcp) != 0) {
-        CMSIS_IMPL_ERROR("thread_udp_recv: socket recreation failed");
-      }
       osDelay(1000);
       continue;
     }

@@ -1,5 +1,4 @@
 #include "udp_multicast.h"
-#include "netif_wasm_add.h"
 #include "sys_utils.h"
 #include <errno.h>
 #include <string.h>
@@ -21,44 +20,6 @@ int udp_mc_initialize(UdpMcInfoType* info)
     CMSIS_IMPL_ERROR("udp_mc_initialize() setsockopt() err=%d", errno);
     return -1;
   }
-  return 0;
-}
-
-int udp_mc_recover(UdpMcInfoType* info)
-{
-  struct sockaddr_in local_addr;
-  uint32_t groupaddr = info->multicast_request.imr_multiaddr.s_addr;
-
-  if (netif_wasm_refresh() < 0 || netif_default == NULL) {
-    return -1;
-  }
-  info->local_ipaddr.addr = netif_default->ip_addr.addr;
-
-  if (info->sd >= 0) {
-    close(info->sd);
-    info->sd = -1;
-  }
-
-  if (udp_mc_initialize(info) != 0) {
-    return -1;
-  }
-
-  memset(&local_addr, 0, sizeof(local_addr));
-  local_addr.sin_family = AF_INET;
-  local_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-  local_addr.sin_port = htons(info->port);
-  if (bind(info->sd, (struct sockaddr*)&local_addr, sizeof(local_addr)) != 0) {
-    close(info->sd);
-    info->sd = -1;
-    return -1;
-  }
-
-  if (groupaddr != 0 && udp_mc_bind_addr(info, groupaddr) != 0) {
-    close(info->sd);
-    info->sd = -1;
-    return -1;
-  }
-
   return 0;
 }
 

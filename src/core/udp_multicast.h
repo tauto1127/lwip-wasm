@@ -25,7 +25,6 @@ typedef struct {
 } UdpMcInfoType;
 
 extern int udp_mc_initialize(UdpMcInfoType* info);
-extern int udp_mc_recover(UdpMcInfoType* info);
 extern int udp_mc_bind_addr(UdpMcInfoType* info, uint32_t groupaddr);
 
 #ifdef __cplusplus
