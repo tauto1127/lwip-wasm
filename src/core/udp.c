@@ -2,12 +2,16 @@
 #include "lwip/udp.h"
 
 #include "netif_wasm_get.h"
+#include "netif_wasm_add.h"
 #include "sys_utils.h"
 #include "udp_multicast_manager.h"
 
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#ifndef LWIP_UDP_RECVFROM
+#define LWIP_UDP_RECVFROM recvfrom
+#endif
 
 struct udp_pcb* udp_pcbs;
 static void thread_udp_recv(void* argument);
@@ -371,13 +375,15 @@ static void thread_udp_recv(void* argument)
     //CMSIS_IMPL_INFO("thread_udp_recv:START: mcp=%p", mcp);
     /* Receive a single datagram from the server */
     socklen_t socklen = sizeof(remote_addr);
-    recv_msglen = recvfrom(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
+    recv_msglen = LWIP_UDP_RECVFROM(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
     if (recv_msglen < 0) {
       int saved_errno = errno;
       if (saved_errno == EINTR) {
-        CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=skip reason=EINTR fd=%d",
-                         mcp->sd);
-        /* An interrupted receive does not mean the socket is broken. */
+        int refresh_status = netif_wasm_refresh();
+        CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=refresh status=%d reason=EINTR fd=%d",
+                         refresh_status, mcp->sd);
+        /* Probe/logging may change errno; retain recvfrom's EINTR result. */
+        errno = saved_errno;
         continue;
       }
       CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d",
@@ -400,6 +406,13 @@ static void thread_udp_recv(void* argument)
   }
   return;
 }
+
+#ifdef LWIP_UDP_TEST
+void lwip_test_thread_udp_recv(void *argument)
+{
+  thread_udp_recv(argument);
+}
+#endif
 
 #if ( (defined DEBUG_SEND_PACKET) || (defined DEBUG_RECV_PACKET))
 static void udp_packet_debug_print(const char* buffer, int len)

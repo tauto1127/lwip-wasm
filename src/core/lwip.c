@@ -9,8 +9,11 @@
 #include "sys_utils.h"
 #include <pthread.h>
 
-// static pthread_mutex_t tcpip_core_mutex = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutex_t tcpip_core_mutex;
+#ifndef LWIP_CORE_MUTEX_TRYLOCK
+#define LWIP_CORE_MUTEX_TRYLOCK pthread_mutex_trylock
+#endif
+
+static pthread_mutex_t tcpip_core_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void MX_LWIP_Init(void)
 {
@@ -19,7 +22,6 @@ void MX_LWIP_Init(void)
   memp_init();
   pbuf_init();
   udp_init();
-  pthread_mutex_init(&tcpip_core_mutex, NULL);
   return;
 }
 
@@ -43,6 +45,11 @@ void sys_unlock_tcpip_core(void)
 {
   pthread_mutex_unlock(&tcpip_core_mutex);
   return;
+}
+
+int sys_trylock_tcpip_core(void)
+{
+  return LWIP_CORE_MUTEX_TRYLOCK(&tcpip_core_mutex);
 }
 
 uint32_t sys_now(void)

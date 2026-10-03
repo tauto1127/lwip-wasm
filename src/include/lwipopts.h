@@ -324,6 +324,7 @@ void sys_mark_tcpip_thread(void);
 
 #if !defined(LWIP_TCPIP_CORE_LOCKING) || LWIP_TCPIP_CORE_LOCKING /* default is 1 */
 void sys_lock_tcpip_core(void);
+int sys_trylock_tcpip_core(void);
 #define LOCK_TCPIP_CORE()          sys_lock_tcpip_core()
 void sys_unlock_tcpip_core(void);
 #define UNLOCK_TCPIP_CORE()        sys_unlock_tcpip_core()
