@@ -76,7 +76,7 @@ netif_wasm_add(const char* ipaddr, const char* netmask)
   netif_wasm.ip_addr.addr = addr;
   netif_wasm.netmask.addr = mask;
   netif_default = &netif_wasm;
-  ip_changed_pending = 0;
+  __atomic_store_n(&ip_changed_pending, 0, __ATOMIC_SEQ_CST);
   printf("netif_wasm: dynamic ip=0x%08x mask=0x%08x\n", addr, mask);
   return 0;
 }
@@ -101,7 +101,7 @@ netif_wasm_refresh(void)
     netif_wasm.netmask.addr = mask;
     netif_wasm.ip_addr.addr = addr;
     netif_default = &netif_wasm;
-    ip_changed_pending = 1;
+    __atomic_store_n(&ip_changed_pending, 1, __ATOMIC_SEQ_CST);
     printf("netif_wasm: local ip initialized after restore to 0x%08x\n",
            addr);
     return 1;
@@ -110,7 +110,7 @@ netif_wasm_refresh(void)
   changed = netif_wasm.ip_addr.addr != addr;
   netif_wasm.ip_addr.addr = addr;
   if (changed) {
-    ip_changed_pending = 1;
+    __atomic_store_n(&ip_changed_pending, 1, __ATOMIC_SEQ_CST);
     printf("netif_wasm: local ip changed to 0x%08x\n", addr);
   }
   return changed ? 1 : 0;
@@ -119,9 +119,7 @@ netif_wasm_refresh(void)
 int
 netif_wasm_take_ip_changed(void)
 {
-  int changed = ip_changed_pending;
-  ip_changed_pending = 0;
-  return changed;
+  return __atomic_exchange_n(&ip_changed_pending, 0, __ATOMIC_SEQ_CST);
 }
 
 struct netif* netif_wasm_get(uint32_t ipaddr)

@@ -1,6 +1,7 @@
 #include "cmsis_os.h"
 #include "lwip/udp.h"
 
+#include "netif_wasm_add.h"
 #include "netif_wasm_get.h"
 #include "sys_utils.h"
 #include "udp_multicast_manager.h"
@@ -8,6 +9,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+
+/* Coalesce concurrent checkpoint EINTRs. Released after one probe. */
+static int eintr_ip_refresh_busy = 0;
 
 struct udp_pcb* udp_pcbs;
 static void thread_udp_recv(void* argument);
@@ -375,9 +379,20 @@ static void thread_udp_recv(void* argument)
     if (recv_msglen < 0) {
       int saved_errno = errno;
       if (saved_errno == EINTR) {
-        CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=skip reason=EINTR fd=%d",
-                         mcp->sd);
+        int expected = 0;
         /* An interrupted receive does not mean the socket is broken. */
+        if (__atomic_compare_exchange_n(&eintr_ip_refresh_busy, &expected, 1,
+                                        0, __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST)) {
+          LOCK_TCPIP_CORE();
+          int status = netif_wasm_refresh();
+          UNLOCK_TCPIP_CORE();
+          __atomic_store_n(&eintr_ip_refresh_busy, 0, __ATOMIC_SEQ_CST);
+          CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=refresh status=%d reason=EINTR fd=%d",
+                           status, mcp->sd);
+        } else {
+          CMSIS_IMPL_ERROR("UDP_RECV_RECOVERY action=skip reason=EINTR fd=%d",
+                           mcp->sd);
+        }
         continue;
       }
       CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d recv=%d",
